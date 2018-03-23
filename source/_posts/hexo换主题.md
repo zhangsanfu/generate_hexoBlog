@@ -8,11 +8,12 @@ tags:
 
 > [https://github.com/hexojs/hexo/wiki/Themes ](https://github.com/hexojs/hexo/wiki/Themes )
 
-## 随便找一个主题，进入主题的 GitHub 首页，比如我找的是  [Jacman](https://github.com/wuchong/jacman.git)
+### 随便找一个主题，进入主题的 GitHub 首页，比如我找的是  [Jacman](https://github.com/wuchong/jacman.git)
 
-## 复制它的 SSH 地址或 HTTPS 地址，假设地址为 https://github.com/wuchong/jacman.git
+> 复制它的 SSH 地址或 HTTPS 地址，假设地址为 https://github.com/wuchong/jacman.git
 
-## 比如我现在在自己的hexo blog根目录  myBlog  
+> 比如我现在在自己的hexo blog根目录  myBlog  
+
 ### 一 进入themes目录
 ``` bash
 $ cd themes
@@ -38,5 +39,27 @@ $ hexo generate
 $ hexo deploy
 ```
 ### 七 等一分钟，然后刷新你的博客页面
-[jacman这个主题的Blog](https://sltrust.github.io/index.html)! 
+[jacman这个主题的Blog](https://sltrust.github.io/index.html)
+
+
+## 上传源代码
+
+> 注意「你的用户名.github.io」上保存的知识博客，并没有保存 hexo 目录，你需要再创建一个名为 generate_hexoBlog 的空仓库，用来保存 myBlog 里面的代码。
+
+### 1.在 GitHub 创建 generate_hexoBlog 空仓库
+> 顺序执行第一个段落里的命令 …or create a new repository on the command line
+``` bash
+echo "# ddd" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:slTrust/generate_hexoBlog.git
+git push -u origin master
+``` 
+ 
+### 2.命令执行后，记住，千万别用 HTTPS 地址。
+
+这样备份之后，你就不会因为误删 myBlog 目录而痛哭了。以后每次 hexo deploy 完之后，都要 push 一下代码，以备份。
+
+这个 generate_hexoBlog 就是用来生成博客的程序，而「你的用户名.github.io」仓库就是你的博客页面。
 
