@@ -48,6 +48,7 @@ $ hexo deploy
 
 ### 1.在 GitHub 创建 generate_hexoBlog 空仓库
 > 顺序执行第一个段落里的命令 …or create a new repository on the command line
+
 ``` bash
 echo "# ddd" >> README.md
 git init
@@ -55,11 +56,23 @@ git add README.md
 git commit -m "first commit"
 git remote add origin git@github.com:slTrust/generate_hexoBlog.git
 git push -u origin master
-``` 
+```
  
 ### 2.命令执行后，记住，千万别用 HTTPS 地址。
 
 这样备份之后，你就不会因为误删 myBlog 目录而痛哭了。以后每次 hexo deploy 完之后，都要 push 一下代码，以备份。
 
 这个 generate_hexoBlog 就是用来生成博客的程序，而「你的用户名.github.io」仓库就是你的博客页面。
+
+### 3.注意如果你 hexo generate 会在public里生成文章页面 具体的就是index.html 如果内容为空
+
+> 那是因为你设置的主题依赖没安装  
+
+``` bash
+切换到 themes目录
+git clone 你想要的风格仓库地址
+cd ..   
+hexo generate
+hexo deploy
+```
 
