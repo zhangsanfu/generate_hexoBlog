@@ -62,7 +62,7 @@ tldr cat 会告诉 cat命令的用法
 14.然后如果你看到 Permission denied (publickey). 就说明你失败了，请回到第 1 步重来，是的，回到第 1 步重来；如果你看到 Hi FrankFang! You've successfully authenticated, but GitHub does not provide shell access. 就说明你成功了！
 好了，终于 TMD 添加了一个无聊的 SSH key，不要问我这个有什么用，因为一会儿你就会用到它，你想了解原理就看这篇 文章
 
->如果要讲清楚，太浪费时间了，我们只是想用用 GitHub 而已。
+> 如果要讲清楚，太浪费时间了，我们只是想用用 GitHub 而已。
 
 *一台电脑只需要一个 SSH key
 *一个 SSH key 可以访问你的所有仓库，即使你有 1000000 个仓库，都没问题
@@ -70,18 +70,18 @@ tldr cat 会告诉 cat命令的用法
 *如果你把 key 从电脑上删除了，重新生成一个 key 即可，替换之前的 key
 
 ### 解释每个命令推荐你去这个
->https://explainshell.com/explain?cmd=ls+-lrt
+> https://explainshell.com/explain?cmd=ls+-lrt
 
 
-###如何上传更新
-####你在本地目录有任何改变就按下面的命令
+### 如何上传更新
+#### 你在本地目录有任何改变就按下面的命令
 ```
 git add 文件路径
 git commit -m '提交信息'
 git pull 相信我 你一定会忘记这个
 git push 
 ```
-###其他 中级命令
+### 其他 中级命令
 ```
 git remote add origin git@github.com:xxxxxxx.git 将本地仓库与远程仓库关联
 git remote set-url origin git@github.com:xxxxx.git 上一步手抖了，可以用这个命令来挽回
