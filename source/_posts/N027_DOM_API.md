@@ -1,7 +1,7 @@
 ---
 title: DOM_API
 date: 2017-11-27 17:58:43
-tags: JavaScript
+tags: DOM
 ---
 
 ### DOM_API
