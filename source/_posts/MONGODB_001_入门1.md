@@ -1,5 +1,5 @@
 ---
-title: mongodb入门一
+title: mongoDb入门一
 date: 2018-05-10 19:33:12
 tags: mongodb
 ---

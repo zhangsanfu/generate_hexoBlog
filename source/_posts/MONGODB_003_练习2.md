@@ -1,5 +1,5 @@
 ---
-title: mongodb练习二
+title: mongoDb练习二
 date: 2018-05-10 21:36:47
 tags: mongodb
 ---
