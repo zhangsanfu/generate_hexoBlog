@@ -93,7 +93,7 @@ dis::after{content:'」'}
 
 如果你喜欢深挖css
 
-预览我做的[https://sltrust.github.io/learnCss/taiji3.html]
+预览我做的 https://sltrust.github.io/learnCss/taiji3.html
 
 ```
 #taiji{
