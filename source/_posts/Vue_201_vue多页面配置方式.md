@@ -1,5 +1,5 @@
 ---
-title: Vue201vue多页面配置方式
+title: vue多页面配置方式
 date: 2018-05-17 22:09:33
 tags: vue
 ---
