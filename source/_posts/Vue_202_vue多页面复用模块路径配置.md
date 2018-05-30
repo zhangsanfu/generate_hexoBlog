@@ -1,5 +1,5 @@
 ---
-title: Vue202vue多页面配置问题汇总
+title: vue多页面配置问题汇总
 date: 2018-05-22 16:17:20
 tags:  vue
 ---
