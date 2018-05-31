@@ -31,6 +31,16 @@ new Boolean(1)  //Boolean对象
 new Boolean('   ') //Boolean对象
 ```
 >![](https://sltrust.github.io/note/img/note025_2.png)
+
+```
+//不一致性的一个恶心的问题
+var arr = new Array(3); //这个数组的length为3
+//arr[0]未指定 arr[1]未指定 arr[2] 未指定
+console.log(0 in arr) //false
+console.log(1 in arr) //false
+console.log(2 in arr) //false
+```
+
 > 
 #### JS七种数据类型
 > number   string   boolean   symbol   null   undefined   object
