@@ -342,4 +342,4 @@ response.setHeader('Accept-Control-Allow-Origin', 'http://A.com:8001')
 1. 你才返回"对象"，你全家才返回 "对象"
 2. JS是一门语言，JSON是另一门语言，JSON 这门语言抄袭了JS
 3. AJAX就是用JS发请求
-4. 相应的第四部分是字符串，可以用JSON语法表示一个对象，也可以用JSON语法表示一个数组，还可以用XML语法，还可以用HTML语法，还可以用CSS语法，还可以用JS语法，还可以用你自创的语法。
+4. 响应的第四部分是字符串，可以用JSON语法表示一个对象，也可以用JSON语法表示一个数组，还可以用XML语法，还可以用HTML语法，还可以用CSS语法，还可以用JS语法，还可以用你自创的语法。
