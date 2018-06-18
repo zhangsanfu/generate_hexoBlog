@@ -209,7 +209,7 @@ laowang.setNewAge(300)
 # print(laowang.__age) 报错
 ```
 
-> 就是任性的像调用私有方法可以吗？ 可以，间接的调用
+> 就是任性的想调用私有方法可以吗？ 可以，间接的调用
 
 ```
 class Person:
@@ -223,6 +223,18 @@ class Person:
     def test2(self):
         self.__test()
         print('test2里调用 __test')
+```
+
+> 虽然无法调用私有方法和属性，但是可以查看私有的东西
+
+```
+dir(类名)
+
+打印该类私有的属性和方法
+如果是你自己定义的私有方法__test
+会被改名为 _Test__test
+
+隐姓埋名。。。
 ```
 
 ### del方法
