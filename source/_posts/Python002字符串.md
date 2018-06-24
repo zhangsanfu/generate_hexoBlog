@@ -1,7 +1,7 @@
 ---
 title: Python002字符串
 date: 2018-06-16 14:11:27
-tags:
+tags: python
 ---
 
 ### 字符串查找

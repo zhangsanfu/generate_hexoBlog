@@ -1,7 +1,7 @@
 ---
 title: Python001基础
 date: 2018-06-16 13:27:34
-tags:
+tags: python
 ---
 
 ### 注释

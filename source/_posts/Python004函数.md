@@ -1,7 +1,7 @@
 ---
 title: Python004函数
 date: 2018-06-16 16:59:05
-tags:
+tags: python
 ---
 
 ### 函数

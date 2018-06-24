@@ -1,7 +1,7 @@
 ---
 title: Python008类属性实例属性静态方法
 date: 2018-06-17 13:50:27
-tags:
+tags: python
 ---
 
 ### 类属性

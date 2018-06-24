@@ -1,7 +1,7 @@
 ---
 title: Python003列表和元组和字典
 date: 2018-06-16 14:53:06
-tags:
+tags: python
 ---
 
 ### 列表

@@ -1,7 +1,7 @@
 ---
 title: Python005文件操作
 date: 2018-06-16 21:37:23
-tags:
+tags: python
 ---
 
 ### 文件操作

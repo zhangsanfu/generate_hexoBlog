@@ -1,7 +1,7 @@
 ---
 title: Python007继承和多态
 date: 2018-06-17 12:15:42
-tags:
+tags: python
 ---
 
 ### 继承
