@@ -80,3 +80,15 @@ create table areas(
     foreign key(pid) references areas(id)
 );
 ```
+
+> 自关联查询山西省的市
+
+```
+select sheng.aid as sid,sheng.name as sname,
+shi.aid as shiid,shi.name as shiname
+from areas as sheng
+inner join areas as shi on sheng.aid=shi.aid
+where sheng.pid is null and sheng.name='山西省'
+;
+
+```
