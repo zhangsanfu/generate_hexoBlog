@@ -1,7 +1,7 @@
 ---
 title: Python028生成器
 date:  2018-06-22 18:10:16
-tags:
+tags: python
 ---
 
 ### 生成器
