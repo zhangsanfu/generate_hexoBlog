@@ -4,6 +4,29 @@ date: 2018-06-16 13:27:34
 tags: python
 ---
 
+### 学习仪式 hello world
+
+```
+#!/usr/bin/env python
+print('hello world')
+
+
+#!/usr/bin/env python 在linux里代表查找系统环境变量的 python命令路径 
+ 但是linux里默认的是2.x版本 而你自己安装的3.x版本python在 usr/local/bin
+#!/usr/bin/python 
+```
+
+> python2 解释器在加载 .py 文件中的代码时，会对内容进行编码（默认ascill）如果有中文就会报错
+
+你应该指定编码
+
+```
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+print("你好，世界")
+```
+
+
 ### 注释
 
 ```
@@ -69,6 +92,10 @@ print("%c"%char1)
 print("%c"%char2)
 
 
+#如果我想输出 %
+print("%") #  这样会报错的，因为在格式化输出里，你出现%默认为就是占位符的%
+print("%%") # 第一个%是对第二个%的转译，告诉Python解释器这只是一个单纯的%，而不是占位符。
+
 print("========================")
 
 # 帮助文档
@@ -128,6 +155,16 @@ else:
     print("输了")
 ```
 
+### in,not in
+
+判断子元素是否在原字符串（字典，列表，集合）中：
+
+```
+#print('喜欢' in 'dkfljadklf喜欢hfjdkas')
+#print('a' in 'bcvd')
+#print('y' not in 'ofkjdslaf')
+```
+
 ### while循环
 
 ```
@@ -139,6 +176,54 @@ while i<=9:
         j+=1
     print("")
     i+=1
+```
+
+#### while else
+
+> 与其它语言else 一般只与if 搭配不同，在Python 中还有个while ...else 语句
+
+> while 后面的else 作用是指，当while 循环正常执行完，中间没有被break 中止的话，就会执行else后面的语句
+
+```
+count = 0
+while count <= 5 :
+    count += 1
+    print("Loop",count)
+
+else:
+    print("循环正常执行完啦")
+print("-----out of while loop ------")
+
+输出如下：
+
+Loop 1
+Loop 2
+Loop 3
+Loop 4
+Loop 5
+Loop 6
+循环正常执行完啦
+-----out of while loop ------
+```
+
+如果执行过程中被break啦，就不会执行else的语句啦
+
+```
+count = 0
+while count <= 5 :
+    count += 1
+    if count == 3:break
+    print("Loop",count)
+
+else:
+    print("循环正常执行完啦")
+print("-----out of while loop ------")
+
+输出如下：
+
+Loop 1
+Loop 2
+-----out of while loop ------
 ```
 
 ### for 循环

@@ -56,6 +56,13 @@ a = 'aa bb cc'
 a.capitalize()
 Aa bb cc
 ```
+### swapcase
+
+```
+a = 'aa bb cc'
+print(a.swapcase()) #大小写翻转
+# AA BB CC
+```
 
 ### title 
 
@@ -150,4 +157,27 @@ str = '_'
 a = ['Hi','boy']
 str.join(a)
 # 'Hi_boy'
+```
+
+### format的三种玩法 格式化输出
+
+```
+res='{} {} {}'.format('egon',18,'male')
+res='{1} {0} {1}'.format('egon',18,'male')
+res='{name} {age} {sex}'.format(sex='male',name='egon',age=18)
+```
+
+### strip
+
+```
+name='*egon**'
+print(name.strip('*'))
+print(name.lstrip('*'))
+print(name.rstrip('*'))
+
+'''
+egon
+egon**
+*egon
+'''
 ```
