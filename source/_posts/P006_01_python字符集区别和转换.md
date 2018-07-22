@@ -1,6 +1,6 @@
 ---
-title: P003_02_python字符集区别和转换
-date: 2018-07-20 14:04:06
+title: P006_01_python字符集区别和转换
+date: 2018-07-22 12:12:06
 tags: fullstack
 ---
 
@@ -29,25 +29,34 @@ tags: fullstack
 
 ####　py3：
 
-> str  在内存中是Unicode编码。
+- str  在内存中是Unicode编码。
+- bytes类型，可以是 ascii utf-8 gbk ....
 
-- bytes类型
+> b前缀代表它是bytes类型
+
+
+#### 对于英文：
 ```
-对于英文：
-　　str：表现形式：s = 'alex'
+str：表现形式：s = 'alex'
 编码方式：010101010 unicode
 
-　bytes：表现形式：s = b'alex'
+bytes：表现形式：s = b'alex'
 编码方式：000101010 utf-8 gbk。。。。
 ```
 
+#### 对于中文：
 ```
-对于中文：
-    str：表现形式：s = '中国'
+str：表现形式：s = '中国'
 编码方式：010101010 unicode
-    bytes： 表现形式：s = b' x\e91\e91\e01\e21\e31\e32'
+    
+bytes： 表现形式：s = b' x\e91\e91\e01\e21\e31\e32'
 编码方式：000101010 utf-8 gbk。。。。
+
+\e91代表一个字节  三个字节代表一个汉字 utf-8里
 ```
+
+#### 转换
+
 > encode 编码，如何将 str ——> bytes
 
 使用方法：  str.encode('utf-8')

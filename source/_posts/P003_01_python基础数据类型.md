@@ -31,6 +31,16 @@ print(data)
 - 真   1   True。
 - 假   0   False。
 
+> 与js的不同点 后四个也是False,但是在js里 只要是对象就是true
+
+- 0 
+- ''
+- []
+- ()
+- {}
+- set()
+
+
 > int ----> str
 ```
 i = 1
