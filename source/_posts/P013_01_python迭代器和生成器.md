@@ -155,7 +155,7 @@ for i in l:
 #iterator.__next__() 
 ```
 
-### 迭代器的好处：
+#### 迭代器的好处：
 
 
 - 从容器类型中一个一个的取值，会把所有的值都取到。
@@ -164,4 +164,145 @@ for i in l:
     而是随着循环 每次生成一个
     每次next每次给我一个
 
+```
+range(10000000000000000)  # 并不是立即生成，否则很浪费内存空间
+
+list(range(10000000000000000)) # 估计内存炸了，把迭代器转为列表
+```
+
+### 生成器
+
+本质是个迭代器
+
+#### 生成器函数
+
+> 1.我们先实现一个普通方法
+
+```
+def generator():
+    print(1)
+    return 'a'
+
+xxx = generator()
+print(xxx)
+
+结果
+1
+a
+```
+
+> 2.yield关键字
+
+将刚刚的return 换成 yield
+
+```
+def generator():
+    print(1)
+    yield 'a'
+
+xxx = generator()
+print(xxx)
+
+结果：
+<generator object generator at 0x000000000238C518>
+
+------------------------------------------------------------
+print(xxx.__next__())
+结果：
+1
+a
+```
+
+####　什么是生成器
+
+- 只要含有yield关键字的函数都是生成器函数
+- yield不能和return共用而且需要写在函数内部
+- 函数内部有yield关键字，这个函数执行返回的结果就是生成器，并且不会执行函数内部代码
+
+> #### 生成器函数 ： 执行之后会得到一个生成器作为返回值
+
+```
+def xxx():
+    print('====>a')
+    yield 1
+    print('====>b')
+    yield 2
+    print('====>c')
+    yield 3
+    print('====>end')
+
+g=xxx()
+
+print(g.__next__()) # 返回第一次yield关键字后面的值
+print(g.__next__()) # 返回第二次yield关键字后面的值
+print(g.__next__()) # 返回第三次yield关键字后面的值
+print(g.__next__()) # 报错 
+
+====>a
+1
+====>b
+2
+====>c
+3
+====>end
+Traceback (most recent call last):
+  File "D:/python_code/py20180718/001.py", line 18, in <module>
+    print(g.__next__())
+StopIteration
+```
+
+> 需求打印 200,0000次 哇哈哈1==》哇哈哈2000000，而我现在只要50个
+
+```
+#娃哈哈%i
+def wahaha():
+    for i in range(2000000):
+        yield '娃哈哈%s'%i
+
+g = wahaha()
+count = 0
+for i in g:
+    count +=1
+    if count > 50:
+        break
+    print('```````````'+i+'`````````````')
+```
+
+
+#### 生成器真的省内存吗？
+
+> 碰巧前面我们刚学过如何测试效率和装饰器，正好拿来练习！！！
+
+```
+import time
+
+def test(func):
+    def inner(*args,**kwargs):
+        start_time = time.time()
+        res = func(*args,**kwargs)
+        end_time = time.time()
+        print("测试效率:", end_time - start_time)
+        return res
+    return inner
+
+@test
+def getList(n):
+    l1 = list(range(n))
+@test
+def getGenerator(n):
+    for i in range(n):
+        yield i
+
+
+getList(100000)
+getGenerator(100000)
+
+
+结果：
+测试效率: 0.004000663757324219
+测试效率: 0.0
+```
+
+> 分析下就可以知道，列表是将0-99999都生成后放进列表里了，所以用时比较多。 
+而生成器只是封装了算法，每次调用在去调用算法，这样做就可以做到节省内存了。
 

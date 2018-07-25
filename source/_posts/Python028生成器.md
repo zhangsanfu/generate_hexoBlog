@@ -124,7 +124,7 @@ next(a)
 ```
 def test():
     i = 0
-    whild i<5:
+    while i<5:
         temp = yield i
         print(temp)
         i += 1
@@ -154,7 +154,7 @@ temp = yield i
 ```
 def test():
     i = 0
-    whild i<5:
+    while i<5:
         temp = yield i
         print(temp)
         i += 1
@@ -179,7 +179,7 @@ t.send('haha') 是把 haha 作为 yield i 的返回结果赋值为temp
 ```
 def test():
     i = 0
-    whild i<5:
+    while i<5:
         temp = yield i
         print(temp)
         i += 1
@@ -198,7 +198,7 @@ t.send('haha') # 报错
 
 def test():
     i = 0
-    whild i<5:
+    while i<5:
         if i == 0:
             temp = yield i
         else:
