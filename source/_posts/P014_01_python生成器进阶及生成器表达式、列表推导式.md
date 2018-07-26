@@ -309,3 +309,73 @@ squared = {x**2 for x in [1, -1, 2]}
 print(squared)
 # set([1, 4])
 ```
+
+### 面试题详解
+
+> 面试题1
+
+```
+def demo():
+    for i in range(4):
+        yield i
+
+g = demo()
+g1 = ( i for i in g)
+g2 = ( i for i in g1)
+
+print(list(g1))
+print(list(g2))
+
+结果：
+[0,1,2,3]
+[]
+
+前5行啥都没干
+直到print(list(g1)) 时才从g中生成到g1 ,但是g1是一个生成器 在list(g1)时把g1里的值已经取走了
+
+所以到print(list(g2))的时候 是个空列表
+```
+
+> 面试题2
+
+```
+def add(n,i):
+    return n+i
+
+def test():
+    for i in range(4):
+        yield i
+
+g = test()
+for n in [1,10,5]:
+    g =( add(n,i) for i in g)
+
+print(list(g))
+
+解析：
+第一步
+n = 1 
+g= (add(n,i) for i in g)
+n = 10 
+g= (add(n,i) for i in g)
+n = 5
+g= (add(n,i) for i in g)
+第二步--》换元法
+n = 1 
+g= (add(n,i) for i in test())
+n = 10 
+g= (add(n,i) for i in (add(n,i) for i in test()))
+第三步--》换元法
+n = 5
+g= (add(n,i) for i in (add(n,i) for i in (add(n,i) for i in test())) )
+第四步带入 n =5  0,1,2,3
+(add(n,i) for i in (add(n,i) for i in (add(n,i) for i in (0,1,2,3))))
+
+n = 5
+(add(n,i) for i in (add(n,i) for i in (5,6,7,8)))
+n = 5
+(add(n,i) for i in (10,11,12,13))
+
+(15,16,17,18)
+
+```
