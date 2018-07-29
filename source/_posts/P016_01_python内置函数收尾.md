@@ -144,3 +144,167 @@ print(repr(1))
 - set：无序排序且不重复，是可变的。
 - frozenset：是冻结的集合，他是不可变的，存在哈希值。可以作为字典的key
 
+#### 判断值的False/True
+
+- all
+- any
+
+```
+all(['a','',123]) # False 有一个值是False就是False
+
+any(['a',123]) # True 
+any(['a','',123]) # True 有一个值是True就是True
+```
+
+#### 拉链方法
+
+- zip
+
+```
+a = [1,2,3]
+b = ['a','b','c']
+# zip(a,b) # 返回的是 迭代器
+for i in zip(a,b):
+    print(i)
+
+结果：
+(1,'a')
+(2,'b')
+(3,'c')
+```
+
+> 如果俩个列表长度不一致呢？
+
+从头开始对齐，以短列表长度为准
+
+```
+a = [1,2,3,4]
+b = ['a','b','c']
+for i in zip(a,b):
+    print(i)
+
+结果：
+(1,'a')
+(2,'b')
+(3,'c')
+```
+
+> 多个呢？而且是元组呢？元组子元素继续是列表呢？
+
+```
+a = [1,2,3,4]
+b = ['a','b','c']
+c = ('*','**',[1,2])
+for i in zip(a,b,c):
+    print(i)
+
+结果：
+(1,'a','*')
+(2,'b','**')
+(3,'c',[1,2])
+```
+
+> 如果是字典呢？
+
+```
+a = [1,2,3,4]
+b = ['a','b','c']
+c = ('*','**',[1,2])
+d = {"k1":1,"k2":2}
+for i in zip(a,b,c,d):
+    print(i)
+
+结果：
+(1,'a','*','k1')
+(2,'b','**','k2')
+-----------------------------由于字典的key是无序的 所以 k1 k2的顺序不是固定的
+```
+
+#### filter和map
+
+> filter(函数名,可迭代的数据类型)
+
+根据返回值的布尔值来过滤
+
+```
+def is_odd(x):
+    return x%2 == 1
+
+res = filter(is_odd,[1,4,6,7,9,12,17])
+print(res) # 又是一个迭代器
+
+for i in res:
+    print(i)
+结果：
+1
+7
+9
+17
+```
+
+> 练习：求1-100开平方是100的数字
+
+```
+#要引入模块了
+form math import sqrt
+def func(n):
+    res = sqrt(n)
+    return res%1 == 0 
+
+res = filter(func,range(1,101))
+```
+
+> map
+
+```
+res = map(abs,[1,-4,6,-8])
+for i in res:
+    print(i)
+结果：
+1
+4
+6
+8
+```
+
+> 总结:
+
+- filter执行之后的结果集合 <= 数据源
+- map 执行之后元素个数不变,值可能发生改变
+
+#### sorted函数
+
+可定制的排序
+
+- 生成了一个新列表
+- 不改变原列表
+- 占内存
+
+```
+a = [1,-4,6,5,-10]
+a.sort(key=abs) # 在原列表基础上进行排序
+
+b =  [2,-4,6,-5]
+print(sorted(b)) # 直接返回排序后的列表（已经不是生成器了，所以慎用），它排序后原列表还在
+print(b)
+```
+
+> 花式用法
+
+```
+sorted(a,reversed=False)
+sorted(a,reversed=True)
+sorted(a,key=abs,reversed=False)
+```
+
+> 练习：列表按照每一个元素的长度排序
+
+```
+a = ['   ',[1,2],'hello world']
+new_a = sorted(a,key=len)
+
+你也可以这样
+def xxx(n):
+    return len(n)
+new_a = sorted(a,key=xxx)
+```
