@@ -1,7 +1,7 @@
 ---
 title: hexo换主题
 date: 2017-10-05 18:30:09
-tags: hexo
+tags: 前端知识点
 ---
 
 ## 主题合集

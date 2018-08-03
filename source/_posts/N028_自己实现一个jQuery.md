@@ -1,7 +1,7 @@
 ---
 title: 自己实现一个jQuery
 date: 2017-11-29 15:27:42
-tags: jQuery
+tags: 前端知识点
 ---
 
 # What is jQuery?

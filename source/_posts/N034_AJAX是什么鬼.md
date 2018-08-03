@@ -1,7 +1,7 @@
 ---
 title: AJAX是什么鬼
 date: 2017-12-05 15:41:58
-tags: Ajax
+tags: 前端知识点
 ---
 
 ## ajax

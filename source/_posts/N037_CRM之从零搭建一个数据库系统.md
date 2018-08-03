@@ -1,7 +1,7 @@
 ---
 title: CRM之从零搭建一个数据库系统
 date: 2017-12-09 15:43:46
-tags:
+tags: 前端知识点
 ---
 
 ### 引入LeanCloud

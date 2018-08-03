@@ -1,7 +1,7 @@
 ---
 title: JS里的Array
 date: 2017-11-23 17:15:16
-tags: JavaScript
+tags: 前端知识点
 ---
 
 ### 基本类型 && 复杂类型

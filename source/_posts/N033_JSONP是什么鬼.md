@@ -1,7 +1,7 @@
 ---
 title: JSONP是什么鬼
 date: 2017-12-03 15:41:37
-tags: JSONP
+tags: 前端知识点
 ---
 
 # 什么是jsonp

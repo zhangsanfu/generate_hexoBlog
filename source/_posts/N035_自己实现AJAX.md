@@ -1,7 +1,7 @@
 ---
 title: 自己实现AJAX
 date: 2017-12-07 15:43:46
-tags: Ajax
+tags: 前端知识点
 ---
 
 # AJAX

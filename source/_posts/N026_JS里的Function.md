@@ -1,7 +1,7 @@
 ---
 title: JS里的Function
 date: 2017-11-25 17:44:34
-tags: JavaScript
+tags: 前端知识点
 ---
 
 #### 函数的基本结构

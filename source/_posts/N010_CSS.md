@@ -1,7 +1,7 @@
 ---
 title: CSS
 date: 2017-10-21 22:44:20
-tags: CSS
+tags: 前端知识点
 ---
 
 ## CSS (Cascading Style Sheets)
