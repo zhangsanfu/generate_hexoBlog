@@ -82,7 +82,7 @@ http-server -c-1
 
 - _blank 会新开一个窗口打开
 - _self 会在自己页面打开，如上结果会在index3页面打开
-- _parent 会在父页面打开，如上结果会在indexe2页面打开
+- _parent 会在父页面打开，如上结果会在index2页面打开
 - _top 会在顶级窗口打开， 如上结果会在index页面打开
 
 ##### a标签之 download 属性
