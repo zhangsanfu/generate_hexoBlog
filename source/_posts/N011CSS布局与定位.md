@@ -6,7 +6,7 @@ tags: 前端知识点
 
 ## CSS布局与定位
 
-题外话如果你想要一个高清的背景图你可以去 wallhaven
+题外话如果你想要一个高清的背景图你可以去 [wallhaven](https://alpha.wallhaven.cc/)
 
 #### div的高度由谁决定(核心知识点)
 
@@ -156,7 +156,7 @@ div1的宽度已经比 main大了
 
 ```
 <div class="main">
-    <div class="div1" style="position:fixed;height:40pxwidth:100%">
+    <div class="div1" style="position:fixed;height:40px;width:100%">
         <div style="padding:20px;">222</div>
     </div>
     <div class="div2" style="height:300px"></div>
