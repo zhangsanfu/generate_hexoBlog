@@ -1,7 +1,7 @@
 ---
 title: Py001_01_02Python变量_用户交互_注释
 date: 2018-08-13 19:51:54
-tags:
+tags: M01
 ---
 
 ### hello world
