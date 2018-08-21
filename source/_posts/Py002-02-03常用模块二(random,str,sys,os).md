@@ -1,5 +1,5 @@
 ---
-title: Py002-02-03常用模块二
+title: Py002-02-03常用模块二(random,str,sys,os)
 date: 2018-08-21 09:50:12
 tags: M02
 ---

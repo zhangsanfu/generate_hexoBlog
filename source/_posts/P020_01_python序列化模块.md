@@ -86,7 +86,7 @@ f.close()
 
 
 f = open('fff',encoding='utf-8')
-res = json.load()
+res = json.load(f)
 f.close()
 print(res) # {'k1': 'v1'}
 ```
