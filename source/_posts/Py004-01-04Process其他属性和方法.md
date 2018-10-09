@@ -188,3 +188,23 @@ p = Process(target=task,name='sub-Process')
 p.start()
 print(p.name)
 ```
+
+#### 父子进程是隔离的
+
+```
+from multiprocessing import Process
+import time,os
+
+def task():
+    global n
+    n = 0
+    print('子进程内%s'%n)
+
+if __name__ == '__main__':
+    # args传递的参数必须是元组的形式
+    p = Process(target=task)
+
+    p.start()
+    p.join()
+    print('主进程',n)
+```
