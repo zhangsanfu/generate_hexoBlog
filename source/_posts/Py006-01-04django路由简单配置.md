@@ -1,5 +1,5 @@
 ---
-title: Py006-01-04djang路由简单配置
+title: Py006-01-04django路由简单配置
 date: 2018-10-21 00:34:04
 tags: M06
 ---
@@ -95,6 +95,9 @@ re_path(r'^articles/([0-9]{4})/$', views.year_archive) 中
 
 ([0-9]{4}) 代表——分组(匹配四位数字) 此时就会多传递一个参数
 只要有()就代表分组 就会多传递一个参数 形如 year_archive(request,1999)
+
+[0-9]{4} 如果没有"()"代表不分组，这样调用视图函数的时候这个动态的值就不会当作位置参数传递
+形如 year_archive(request)
 '''
 
 # views.py里 更新对应的视图函数
