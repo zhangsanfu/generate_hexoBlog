@@ -6,7 +6,9 @@ tags: M06
 
 ### 标签
 
+```
 标签看起来像是这样的： {% tag %}。标签比变量更加复杂：一些在输出中创建文本，一些通过循环或逻辑来控制流程，一些加载其后的变量将使用到的额外信息到模版中。一些标签需要开始和结束标签 （例如{% tag %} ...标签 内容 ... {% endtag %}）。
+```
 
 #### for标签
 
@@ -25,7 +27,9 @@ person_list = [{"name":1},{"name":2}]
 {% endfor %}
 ```
 
+```
 可以利用{% for obj in list reversed %}反向完成循环。
+```
 
 - 遍历一个字典：
 
@@ -33,9 +37,9 @@ person_list = [{"name":1},{"name":2}]
 {% for key,val in dic.items %}
     <p>{{ key }}:{{ val }}</p>
 {% endfor %}
-```
 
 注：循环序号可以通过｛｛forloop｝｝显示　　
+```
 
 ```
 forloop.counter            The current iteration of the loop (1-indexed)
@@ -48,7 +52,9 @@ forloop.last               True if this is the last time through the loop
 
 > for ... empty
 
+```
 for 标签带有一个可选的{% empty %} 从句，以便在给出的组是空的或者没有被找到时，可以有所操作。
+```
 
 ```
 arr = []
@@ -62,7 +68,9 @@ arr = []
 
 #### if 标签
 
+```
 {% if %}会对一个变量求值，如果它的值是“True”（存在、不为空、且不是boolean类型的false值），对应的内容块会输出。
+```
 
 ```
 {% if num > 100 or num < 0 %}
