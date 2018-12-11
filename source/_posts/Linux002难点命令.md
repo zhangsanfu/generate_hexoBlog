@@ -1,7 +1,7 @@
 ---
 title: Linux002难点命令
 date: 2018-06-13 23:07:48
-tags:
+tags: linux
 ---
 
 ### ln软链接和硬链接

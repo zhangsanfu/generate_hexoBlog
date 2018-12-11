@@ -1,7 +1,7 @@
 ---
 title: Linux003多用户多任务操作
 date: 2018-06-14 21:33:48
-tags:
+tags: linux
 ---
 
 ### 多用户
