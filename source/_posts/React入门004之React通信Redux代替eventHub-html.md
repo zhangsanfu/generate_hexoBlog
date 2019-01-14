@@ -559,3 +559,50 @@ store.subscribe(render)
 </html>
 ```
 
+> 是不是觉得Redux很啰嗦
+
+- eventHub能看懂
+- 用 redux反而很恶心
+
+> #### Redux为啥这样做
+
+- 所有的框架都有一个使命——防呆(怕你的队友是个猪队友)
+- 所以Redux最大的功能就是防呆
+
+> eventHub的问题
+
+- 事件名可能任意的，分散在各处，而你用redux强制要求你集中的在 switch里
+    ```
+    let reducers = (state = 0 ,action)=>{
+        //初始化
+        state = state ||{
+            money:{ amount:100000 }
+        }
+        switch(action.type){
+            case '我想花钱':
+                return {
+                    money:{
+                        amount:state.money.amount - action.payload
+                    }
+                }
+            default:
+                return state
+        }
+    }
+    ```
+
+- redux的约束 你必须每个事件给我一个事件名和 payload 并且列在一起
+- 你只能用 props的方式 使用 store={store.getState()}
+
+    ```
+    //getState()只读的方式告诉你  不要修改
+    //因为通过 props能防猪队友 
+
+    // 猪队友
+    // 通过引用修改数据
+    this.props.money.amount -= 200
+    // 即使用redux 依然也是可以通过引用改的
+    这是 JS的 bug 
+    ```
+- redux可以让不懂英语的前端 走远一点
+- 比如 payload 实际就是个 data 
