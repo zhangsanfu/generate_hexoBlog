@@ -1,5 +1,5 @@
 ---
-title: React入门005之React是什么01
+title: React入门005之Redux是什么01
 date: 2019-01-15 21:01:00
 tags: React入门
 ---
@@ -271,6 +271,8 @@ function stateChanger(state,action){
 
 
 ```
+
+[代码仓库](https://github.com/slTrust/React-study)
 
 
 

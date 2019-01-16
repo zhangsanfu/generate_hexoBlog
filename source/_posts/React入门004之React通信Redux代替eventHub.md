@@ -606,3 +606,5 @@ store.subscribe(render)
     ```
 - redux可以让不懂英语的前端 走远一点
 - 比如 payload 实际就是个 data 
+
+[代码仓库](https://github.com/slTrust/React-study)
