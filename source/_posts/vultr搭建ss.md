@@ -224,12 +224,6 @@ chmod +x bbr.sh
 
 
 
-![](https://raw.githubusercontent.com/slTrust/note/master/vultr/vultr001.png)
-
-
-
-
-
 
 
 
