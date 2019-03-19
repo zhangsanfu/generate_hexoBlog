@@ -354,4 +354,402 @@ yarn add cross-env --dev
 
 ```
 
+> #### lib/index.d.ts 是干嘛的
+
+给使用我们库的人，我们生成了那些类型，但是它应该在 dist目录里
+
+```
+# 添加 
+outDir:"dist"
+
+修改 tsconfig.json
+{
+    "compilerOptions": {
+      "outDir":"dist",
+      "declaration": true,
+      "baseUrl": ".",
+      "module": "esnext",
+      "target": "es5",
+      "lib": ["es6", "dom"],
+      "sourceMap": true,
+      "jsx": "react",
+      "moduleResolution": "node",
+      "rootDir": ".",
+      "forceConsistentCasingInFileNames": true,
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "noImplicitAny": true,
+      "importHelpers": true,
+      "strictNullChecks": true,
+      // "suppressImplicitAnyIndexErrors": true,
+      // https://github.com/Microsoft/TypeScript/issues/28762#issuecomment-443406607
+      "allowSyntheticDefaultImports": true,
+      "noUnusedLocals": true
+    },
+    "include": [
+    ],
+    "exclude": [
+      "node_modules",
+      "build",
+      "dist",
+      "scripts",
+      "acceptance-tests",
+      "webpack",
+      "jest",
+      "src/setupTests.ts",
+      "*.js"
+    ]
+  }
+
+# 运行
+yarn build 
+发现 之前的文件都生成在 dist里了
+index.d.ts
+button.d.ts
+
+button.d.ts是多余的如何去掉呢？
+
+修改package.json
+
+"main": "dist/lib/index.js",
+"types":"dist/lib/index",
+```
+
+### 配置react 测试框架 jest
+
+google 搜索 [react jest](https://jestjs.io/docs/en/tutorial-react)
+
+```
+yarn add --dev jest babel-jest @babel/preset-env @babel/preset-react react-test-renderer
+
+# 新建 .babelrc
+
+{
+    "presets":["react-app"]
+}
+
+# 在 package.json scripts里新增测试命令
+"test":"cross-env NODE_ENV=test jest --config=jest.config.js --runInBand"
+
+# 新建 jest.config.js 文件
+
+// https://jestjs.io/docs/en/configuration.html
+
+module.exports = {
+    verbose: true,
+    clearMocks: false,
+    collectCoverage: false,
+    reporters: ["default"],
+    moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
+    moduleDirectories: ['node_modules'],
+    moduleNameMapper: {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/__mocks__/file-mock.js",
+    },
+    testMatch: ['<rootDir>/**/__tests__/**/*.unit.(js|jsx|ts|tsx)'],
+    transform: {
+      "^.+unit\\.(js|jsx)$": "babel-jest",
+      '^.+\\.(ts|tsx)$': 'ts-jest',
+    },
+    setupFilesAfterEnv: ["<rootDir>test/setupTests.js"]
+  }
+
+# 运行 yarn test
+
+报错ts-jest in the transform option was not found.
+
+# 安装 ts-jest
+yarn add --dev ts-jest
+
+# 继续运行 yarn test
+ 
+ 又报错了
+ Module <rootDir>test/setupTests.js in the setupFilesAfterEnv option was not found.
+         <rootDir> is: /Users/huangjiaxi/Desktop/hjx-test-1
+
+# 新建 test/setupTests.js
+
+# 再次运行 yarn test
+不报错了 提示没找到任何 test文件 走了
+No tests found, exiting with code 1
+
+# 新建文件 ./lib/__tests__/hello.unit.tsx
+
+test('hello',()=>{ })
+
+# 此时 test 标红 意思是不知道是啥 你要安装依赖
+yarn add @types/jest --dev
+
+# test()不标红了
+
+
+# 修改 hello.unit.tsx
+
+test('hello',()=>{
+    expect(1).toEqual(2)
+})
+
+# 运行 yarn test 还是爆错
+
+# 用 describe
+
+describe('我的第一个测试用例',()=>{
+    it('1 等于 1',()=>{
+        expect(1).toEqual(2)
+    })
+})
+
+# 运行 yarn test 测试生效了
+ FAIL  lib/__tests__/hello.unit.tsx
+  我的第一个测试用例
+    ✕ 1 等于 1 (6ms)
+
+  ● 我的第一个测试用例 › 1 等于 1
+
+    expect(received).toEqual(expected)
+
+    Expected: 2
+    Received: 1
+
+      1 | describe('我的第一个测试用例',()=>{
+      2 |     it('1 等于 1',()=>{
+    > 3 |         expect(1).toEqual(2)
+        |                   ^
+      4 |     })
+      5 | })
+
+      at Object.<anonymous> (lib/__tests__/hello.unit.tsx:3:19)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.444s
+
+
+# 修改 测试内容 并运行 yarn test
+
+describe('我的第一个测试用例',()=>{
+    it('1 等于 1',()=>{
+        expect(1).toEqual(1)
+    })
+})
+
+// 测试通过
+ PASS  lib/__tests__/hello.unit.tsx
+  我的第一个测试用例
+    ✓ 1 等于 1 (3ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        2.552s
+Ran all test suites.
+✨  Done in 3.32s.
+
+```
+
+> #### 测试 我们的button 能渲染
+
+button.unit.tsx
+
+```
+import renderer from 'react-test-renderer'
+import React from 'react'
+import Button from '../button'
+
+describe('button',()=>{
+    it('是个 div',()=>{
+        const json = renderer.create(<Button/>)
+            .toJSON()
+
+        expect(json).toMatchSnapshot()
+    })
+})
+
+// 运行 yarn test
+报错 提示
+Try `npm install @types/react-test-renderer` if it exists or add a new declaration (.d.ts) file containing `declare module 'react-test-renderer';`
+
+// 安装 类型依赖
+yarn add --dev @types/react-test-renderer
+
+# 继续运行 yarn test
+又报错
+Cannot read property 'create' of undefined
+```
+
+
+> #### 神奇的 import
+
+上面之所以失败是因为 jest 写 import必须这样
+
+button.unit.tsx
+
+```
+import * as renderer from 'react-test-renderer'
+import * as React from 'react'
+import * as Button from '../button'
+
+describe('button',()=>{
+    it('是个 div',()=>{
+        const json = renderer.create(<Button/>)
+            .toJSON()
+
+        expect(json).toMatchSnapshot()
+    })
+})
+```
+
+button.tsx
+
+```
+import * as React from 'react';
+function Button(){
+    return (
+        <div>
+            按钮
+        </div>
+    )
+}
+export default Button
+```
+
+> #### 不想要这个 import * as 怎么办
+
+tsconfig.test.js
+
+```
+{
+    "extends":"./tsconfig.json",
+    // "compilerOptions":{
+        // "module":"commonjs"
+    // }
+}
+```
+
+jest.config.js
+
+```
+// https://jestjs.io/docs/en/configuration.html
+
+module.exports = {
+    verbose: true,
+    clearMocks: false,
+    collectCoverage: false,
+    reporters: ["default"],
+    moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
+    moduleDirectories: ['node_modules'],
+    globals: {
+        'ts-jest': {
+          tsConfig: 'tsconfig.test.json',
+        },
+    },
+    moduleNameMapper: {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/__mocks__/file-mock.js",
+    },
+    testMatch: ['<rootDir>/**/__tests__/**/*.unit.(js|jsx|ts|tsx)'],
+    transform: {
+      "^.+unit\\.(js|jsx)$": "babel-jest",
+      '^.+\\.(ts|tsx)$': 'ts-jest',
+    },
+    setupFilesAfterEnv: ["<rootDir>test/setupTests.js"]
+  }
+```
+
+jsconfig.json
+
+```
+{
+    "compilerOptions": {
+      "outDir":"dist",
+      "declaration": true,
+      "baseUrl": ".",
+      "module": "esnext",
+      "target": "es5",
+      "lib": ["es6", "dom"],
+      "sourceMap": true,
+      "jsx": "react",
+      "moduleResolution": "node",
+      "rootDir": ".",
+      "forceConsistentCasingInFileNames": true,
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "noImplicitAny": true,
+      "importHelpers": true,
+      "strictNullChecks": true,
+      // "suppressImplicitAnyIndexErrors": true,
+      // https://github.com/Microsoft/TypeScript/issues/28762#issuecomment-443406607
+      // "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      "noUnusedLocals": true
+    },
+    "include": [
+    ],
+    "exclude": [
+      "node_modules",
+      "build",
+      "dist",
+      "scripts",
+      "acceptance-tests",
+      "webpack",
+      "jest",
+      "src/setupTests.ts",
+      "*.js"
+    ]
+  }
+```
+
+tslint.json
+
+```
+{
+    "extends": ["tslint:recommended", "tslint-react"],
+    "rules": {
+      "no-console": [false, "log", "error"],
+      "jsx-no-multiline-js": false,
+      "whitespace": false,
+      "no-empty-interface": false,
+      "space-before-function-paren": false,
+      "no-namespace": false,
+      "label-position": false,
+      "quotemark": [true, "single", "jsx-double"],
+      "member-access": false,
+      "semicolon": [true, "always", "ignore-bound-class-methods"],
+      "no-unused-expression": [true, "allow-fast-null-checks"],
+      "member-ordering": false,
+      "trailing-comma": false,
+      "arrow-parens": false,
+      "jsx-self-close": false,
+      "max-line-length": false,
+      "interface-name": false,
+      "no-empty": false,
+      "comment-format": false,
+      "ordered-imports": false,
+      "object-literal-sort-keys": false,
+      "eofline": false,
+      "jsx-no-lambda": false,
+      "no-trailing-whitespace": false,
+      "jsx-alignment": false,
+      "jsx-wrap-multilines": false,
+      "no-shadowed-variable": [
+        false,
+        {
+          "class": true,
+          "enum": true,
+          "function": false,
+          "interface": false,
+          "namespace": true,
+          "typeAlias": false,
+          "typeParameter": false
+        }
+      ]
+    },
+    "linterOptions": {
+      "exclude": [
+        "config/**/*.js",
+        "node_modules/**/*.ts",
+        "coverage/lcov-report/*.js"
+      ]
+    }
+  }
+```
 
